@@ -1,5 +1,8 @@
 <mat-toolbar color="primary" class="mat-elevation-z6">
-    <h1>Users Manager </h1>
+    <i class="material-icons" style="margin-right: 2px; margin-left: -0.3em; font-size: 60px;">
+        dashboard
+    </i>
+    <p style="font-family: Roboto;"> Users Manager </p>
 </mat-toolbar>
 
 <div [ngStyle]="{'background':'#3F51B5'}">
@@ -9,13 +12,14 @@
         </button>
     </mat-card-actions>
 </div>
+
 <!-- Table Content -->
-<div class="mat-elevation-z8" style="margin: 1em">
+<div class="mat-elevation-z8" style="margin: 1em;">
     <table mat-table [dataSource]="dataSource">
 
         <!-- Position Column -->
         <ng-container matColumnDef="position" sticky>
-            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <th mat-header-cell *matHeaderCellDef> ID </th>
             <td mat-cell *matCellDef="let element"> {{element.position}} </td>
         </ng-container>
 
@@ -40,11 +44,11 @@
         <ng-container matColumnDef="action" stickyEnd>
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element">
-                <button mat-raised-button color="primary" class="push-right" (click)="editDialog()">
+                <button mat-raised-button color="primary" class="push-left" (click)="editDialog()">
                     <mat-icon aria-hidden="false" aria-label="Example home icon">editar
                     </mat-icon>
                 </button>
-                <button mat-raised-button color="warn" class="push-right">
+                <button mat-raised-button color="warn" class="push-right" style="margin-left: 0.3em;">
                     <mat-icon aria-hidden="false" aria-label="Example home icon">remove_circle_outline
                     </mat-icon>
                 </button>
@@ -55,5 +59,5 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
 </div>
