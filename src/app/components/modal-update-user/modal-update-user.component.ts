@@ -38,6 +38,16 @@ export class ModalUpdateUserComponent implements OnInit {
   }
 
   onNoClick(): void {
+    this.resetForm();
     this.dialogRef.close();
+  }
+
+  resetForm() {
+    this.form = this.fb.group({
+      animal: ['', [Validators.required]],
+      telefone: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+    });
+    console.log('form after clear', this.form.value)
   }
 }

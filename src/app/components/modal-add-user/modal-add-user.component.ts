@@ -24,7 +24,7 @@ export class ModalAddUserComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(ModalUpdateUserComponent, {
       width: '600px',
-      data: { name: this.name, animal: this.animal, telefone: this.telefone }
+      data: { name: '', animal: '', telefone: '' }
     });
 
     dialogRef.afterClosed().subscribe(
