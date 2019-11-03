@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UserComponent } from './user.component';
 import { MaterialModule } from '../material.module';
 import { Router, RouterModule } from '@angular/router';
+import { ComponentsModule } from '../components/components.module';
 
 
 
@@ -11,6 +12,7 @@ import { Router, RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     MaterialModule,
+    ComponentsModule
   ],
   exports: [
     UserComponent

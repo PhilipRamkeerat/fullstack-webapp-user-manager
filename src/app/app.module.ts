@@ -23,6 +23,6 @@ import { ComponentsModule } from './components/components.module';
     ComponentsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

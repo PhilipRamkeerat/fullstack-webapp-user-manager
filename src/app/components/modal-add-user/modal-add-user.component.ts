@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ModalUpdateUserComponent } from '../modal-update-user/modal-update-user.component';
 
 @Component({
   selector: 'app-modal-add-user',
@@ -7,7 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalAddUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ModalUpdateUserComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   ngOnInit() {
   }
