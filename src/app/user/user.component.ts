@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalUpdateUserComponent } from '../components/modal-update-user/modal-update-user.component';
+import { ModalAddUserComponent } from '../components/modal-add-user/modal-add-user.component';
 
 export interface DialogData {
   animal: string;
@@ -37,7 +38,7 @@ export class UserComponent implements OnInit {
    * Modal configurations
    */
   openDialog() {
-    const dialogRef = this.dialog.open(ModalUpdateUserComponent, {
+    const dialogRef = this.dialog.open(ModalAddUserComponent, {
       width: '600px',
       data: { name: '', animal: '', telefone: '', description: '' }
     });

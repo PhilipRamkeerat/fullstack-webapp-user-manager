@@ -1,6 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ModalUpdateUserComponent } from '../modal-update-user/modal-update-user.component';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogData } from '../modal-add-user/modal-add-user.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 export interface DialogData {
@@ -17,35 +18,49 @@ export interface DialogData {
 })
 export class ModalAddUserComponent implements OnInit {
 
-  name: string;
+  form: FormGroup
   animal: string;
   telefone: string;
+  name: string;
   description: string;
-  constructor(public dialog: MatDialog) { }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(ModalUpdateUserComponent, {
-      width: '600px',
-      data: { name: '', animal: '', telefone: '', description: '' }
-    });
-
-    dialogRef.afterClosed().subscribe(
-      data => {
-        if (!data || data == undefined || (data.name == '' && data.animal == '' && data.telefone == '' && data.description == '')) {
-          console.log('Invalid Datas', data);
-          return;
-        } else {
-          this.name = data.name;
-          this.animal = data.animal;
-          this.telefone = data.telefone;
-          this.description = data.description;
-          console.log("Valid Log", data);
-        }
-      }
-    );
+  constructor(
+    public dialogRef: MatDialogRef<ModalAddUserComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private fb: FormBuilder) {
+    this.animal = data.animal;
+    this.telefone = data.telefone;
+    this.name = data.name;
+    this.description = data.description;
   }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      animal: [this.animal, [Validators.required]],
+      telefone: [this.telefone, [Validators.required]],
+      name: [this.name, [Validators.required]],
+      description: [this.description, [Validators.required]]
+    });
+  }
+
+  submitClick(): void {
+    console.log('valueForm', this.form.value);
+    this.dialogRef.close(this.form.value);
+  }
+
+  onNoClick(): void {
+    this.resetForm();
+    this.dialogRef.close();
+  }
+
+  resetForm() {
+    this.form = this.fb.group({
+      animal: ['', [Validators.required]],
+      telefone: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+    });
+    console.log('form after clear', this.form.value)
   }
 
 }
