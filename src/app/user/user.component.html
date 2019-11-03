@@ -1,27 +1,20 @@
-<mat-toolbar color="primary">
-    <h1>CRUD </h1>
+<mat-toolbar color="primary" class="mat-elevation-z6">
+    <h1>Users Manager </h1>
 </mat-toolbar>
-<!-- Table Content -->
 
-<div class="modal-add-user">
+<div [ngStyle]="{'background':'#3F51B5'}">
     <mat-card-actions>
         <button mat-fab color="primary" style="margin: 1em;" (click)="openDialog()">
             <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
         </button>
-        <button mat-fab color="primary">
-            <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="editDialog()">editar</mat-icon>
-        </button>
     </mat-card-actions>
 </div>
-
-<div style="margin: 1em;">
-    <p>Users</p>
-</div>
-<div class="mat-elevation-z8" style="margin: 1em;">
+<!-- Table Content -->
+<div class="mat-elevation-z8" style="margin: 1em">
     <table mat-table [dataSource]="dataSource">
 
         <!-- Position Column -->
-        <ng-container matColumnDef="position">
+        <ng-container matColumnDef="position" sticky>
             <th mat-header-cell *matHeaderCellDef> No. </th>
             <td mat-cell *matCellDef="let element"> {{element.position}} </td>
         </ng-container>
@@ -44,11 +37,17 @@
             <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="action">
+        <ng-container matColumnDef="action" stickyEnd>
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element">
-                <button mat-raised-button color="primary" class="push-right" (click)="editDialog()">Edit</button>
-                <button mat-raised-button color="warn" class="push-right">Delete</button>
+                <button mat-raised-button color="primary" class="push-right" (click)="editDialog()">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">editar
+                    </mat-icon>
+                </button>
+                <button mat-raised-button color="warn" class="push-right">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">remove_circle_outline
+                    </mat-icon>
+                </button>
             </td>
         </ng-container>
 
