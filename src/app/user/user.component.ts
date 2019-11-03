@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
   animal: string;
   telefone: string;
   description: string;
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   editObjectExample = {
     name: 'Philip',
