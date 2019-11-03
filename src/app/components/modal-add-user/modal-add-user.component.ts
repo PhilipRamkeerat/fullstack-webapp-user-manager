@@ -7,6 +7,7 @@ export interface DialogData {
   animal: string;
   name: string;
   telefone: string;
+  description: string;
 }
 
 @Component({
@@ -19,24 +20,27 @@ export class ModalAddUserComponent implements OnInit {
   name: string;
   animal: string;
   telefone: string;
+  description: string;
   constructor(public dialog: MatDialog) { }
 
   openDialog() {
     const dialogRef = this.dialog.open(ModalUpdateUserComponent, {
       width: '600px',
-      data: { name: '', animal: '', telefone: '' }
+      data: { name: '', animal: '', telefone: '', description: '' }
     });
 
     dialogRef.afterClosed().subscribe(
       data => {
-        if (!data || data == undefined) {
+        if (!data || data == undefined || (data.name == '' && data.animal == '' && data.telefone == '' && data.description == '')) {
+          console.log('Invalid Datas', data);
           return;
         } else {
           this.name = data.name;
           this.animal = data.animal;
           this.telefone = data.telefone;
+          this.description = data.description;
+          console.log("Valid Log", data);
         }
-        console.log(data);
       }
     );
   }

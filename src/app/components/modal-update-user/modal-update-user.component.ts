@@ -14,6 +14,7 @@ export class ModalUpdateUserComponent implements OnInit {
   animal: string;
   telefone: string;
   name: string;
+  description: string;
 
   constructor(
     public dialogRef: MatDialogRef<ModalUpdateUserComponent>,
@@ -22,6 +23,7 @@ export class ModalUpdateUserComponent implements OnInit {
     this.animal = data.animal;
     this.telefone = data.telefone;
     this.name = data.name;
+    this.description = data.description;
   }
 
   ngOnInit() {
@@ -29,6 +31,7 @@ export class ModalUpdateUserComponent implements OnInit {
       animal: [this.animal, [Validators.required]],
       telefone: [this.telefone, [Validators.required]],
       name: [this.name, [Validators.required]],
+      description: [this.description, [Validators.required]]
     });
   }
 
@@ -47,6 +50,7 @@ export class ModalUpdateUserComponent implements OnInit {
       animal: ['', [Validators.required]],
       telefone: ['', [Validators.required]],
       name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
     });
     console.log('form after clear', this.form.value)
   }
