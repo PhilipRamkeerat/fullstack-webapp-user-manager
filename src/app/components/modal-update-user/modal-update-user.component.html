@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Update User</h1>
+<div mat-dialog-content [formGroup]="form" class="mat-typography">
+    <div *ngIf="form.invalid">
+        <span>
+            Fill in all fields
+        </span>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" color="warn">notification_important</mat-icon>
+    </div>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Name" [(ngModel)]="data.name" formControlName="name">
+        <mat-error> Name is required.</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="animal" [(ngModel)]="data.animal" formControlName="animal">
+        <mat-error> Animal is required.</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="phone" [(ngModel)]="data.telefone" formControlName="telefone">
+        <mat-error> Telefone is required.</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="description" [(ngModel)]="data.description" formControlName="description">
+        <mat-error> Description is required.</mat-error>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onNoClick()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" color="white">clear</mat-icon>
+    </button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="data" [disabled]="form.invalid">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" color="white">save</mat-icon>
+    </button>
+</div>
