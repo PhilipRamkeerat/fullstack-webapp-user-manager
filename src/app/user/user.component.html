@@ -2,14 +2,16 @@
     <h1>CRUD </h1>
 </mat-toolbar>
 <!-- Table Content -->
-<mat-card-actions>
+<!-- <mat-card-actions>
     <button mat-fab color="primary" style="margin: 1em;">
         <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
     </button>
     <button mat-fab color="primary">
         <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
     </button>
-</mat-card-actions>
+</mat-card-actions> -->
+
+<app-modal-add-user> </app-modal-add-user>
 
 <div style="margin: 1em;">
     <p>Users</p>
@@ -47,7 +49,3 @@
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
-
-<app-modal-add-user>
-
-</app-modal-add-user>
