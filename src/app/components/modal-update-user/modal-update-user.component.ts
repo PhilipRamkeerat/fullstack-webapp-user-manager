@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogData } from '../modal-add-user/modal-add-user.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-update-user',
@@ -26,9 +26,9 @@ export class ModalUpdateUserComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      animal: [this.animal, []],
-      telefone: [this.telefone, []],
-      name: [this.name, []],
+      animal: [this.animal, [Validators.required]],
+      telefone: [this.telefone, [Validators.required]],
+      name: [this.name, [Validators.required]],
     });
   }
 

@@ -1,13 +1,15 @@
 <h1 mat-dialog-title>Register</h1>
-<div mat-dialog-content [formGroup]="form">
-    <mat-form-field>
-        <input matInput [(ngModel)]="data.name" formControlName="name">
+<div mat-dialog-content [formGroup]="form" class="mat-typography">
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Name" [(ngModel)]="data.name" formControlName="name">
     </mat-form-field>
-    <mat-form-field>
-        <input matInput [(ngModel)]="data.telefone" formControlName="telefone">
+    <br>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="animal" [(ngModel)]="data.animal" formControlName="animal">
     </mat-form-field>
-    <mat-form-field>
-        <input matInput [(ngModel)]="data.animal" formControlName="animal">
+    <br>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="telefone" [(ngModel)]="data.telefone" formControlName="telefone">
     </mat-form-field>
 </div>
 <div mat-dialog-actions>
