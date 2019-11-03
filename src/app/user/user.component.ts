@@ -2,6 +2,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
+import { ModalUpdateUserComponent } from '../components/modal-update-user/modal-update-user.component';
+
+export interface DialogData {
+  animal: string;
+  name: string;
+  telefone: string;
+  description: string;
+}
 
 @Component({
   selector: 'app-user',
@@ -10,6 +18,10 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class UserComponent implements OnInit {
 
+  name: string;
+  animal: string;
+  telefone: string;
+  description: string;
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
@@ -19,6 +31,31 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  /**
+   * Modal configurations
+   */
+  openDialog() {
+    const dialogRef = this.dialog.open(ModalUpdateUserComponent, {
+      width: '600px',
+      data: { name: '', animal: '', telefone: '', description: '' }
+    });
+
+    dialogRef.afterClosed().subscribe(
+      data => {
+        if (!data || data == undefined || (data.name == '' && data.animal == '' && data.telefone == '' && data.description == '')) {
+          console.log('Invalid Datas', data);
+          return;
+        } else {
+          this.name = data.name;
+          this.animal = data.animal;
+          this.telefone = data.telefone;
+          this.description = data.description;
+          console.log("Valid Log", data);
+        }
+      }
+    );
   }
 
 }

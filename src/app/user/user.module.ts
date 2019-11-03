@@ -16,6 +16,9 @@ import { ComponentsModule } from '../components/components.module';
   ],
   exports: [
     UserComponent
+  ],
+  entryComponents: [
+    UserComponent
   ]
 })
 export class UserModule { }

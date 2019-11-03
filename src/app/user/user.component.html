@@ -11,7 +11,18 @@
     </button>
 </mat-card-actions> -->
 
-<app-modal-add-user> </app-modal-add-user>
+<!-- <app-modal-add-user> </app-modal-add-user> -->
+
+<div class="modal-add-user">
+    <mat-card-actions>
+        <button mat-fab color="primary" style="margin: 1em;" (click)="openDialog()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
+        </button>
+        <button mat-fab color="primary">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
+        </button>
+    </mat-card-actions>
+</div>
 
 <div style="margin: 1em;">
     <p>Users</p>
