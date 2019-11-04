@@ -6,6 +6,8 @@ import { ModalAddUserComponent } from '../components/modal-add-user/modal-add-us
 import { ModalUpdateUserComponent } from '../components/modal-update-user/modal-update-user.component';
 import { UserService } from './user.service';
 import User from './user';
+import { TooltipPosition } from '@angular/material/tooltip';
+import { FormControl } from '@angular/forms';
 
 // Interface for Material Modal
 export interface DialogData {
@@ -38,6 +40,11 @@ export class UserComponent implements OnInit {
 
   // Search
   searchWord: string;
+
+  // Tooltip Position
+  positionOptions: TooltipPosition[] = ['after', 'before', 'above', 'below', 'left', 'right'];
+  positionRight = new FormControl(this.positionOptions[5]);
+  positionLeft = new FormControl(this.positionOptions[4]);
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
