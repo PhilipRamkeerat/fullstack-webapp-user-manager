@@ -53,7 +53,7 @@ export class UserComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(ModalAddUserComponent, {
       width: '600px',
-      data: { '_id': '', userName: '', userDescription: '', userPrice: '', userLastname: '' }
+      data: { userName: '', userDescription: '', userPrice: '', userLastname: '' }
     });
 
     dialogRef.afterClosed().subscribe(

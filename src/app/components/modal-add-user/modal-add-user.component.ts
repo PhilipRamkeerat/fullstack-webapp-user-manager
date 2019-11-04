@@ -5,10 +5,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 export interface DialogData {
-  animal: string;
-  name: string;
-  telefone: string;
-  description: string;
+  userName: string;
+  userDescription: string;
+  userPrice: string;
+  userLastname: string;
 }
 
 @Component({
@@ -19,27 +19,27 @@ export interface DialogData {
 export class ModalAddUserComponent implements OnInit {
 
   form: FormGroup
-  animal: string;
-  telefone: string;
-  name: string;
-  description: string;
+  userName: string;
+  userDescription: string;
+  userPrice: string;
+  userLastname: string;
 
   constructor(
     public dialogRef: MatDialogRef<ModalAddUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private fb: FormBuilder) {
-    this.animal = data.animal;
-    this.telefone = data.telefone;
-    this.name = data.name;
-    this.description = data.description;
+    this.userName = data.userName;
+    this.userDescription = data.userDescription;
+    this.userPrice = data.userPrice;
+    this.userLastname = data.userLastname;
   }
 
   ngOnInit() {
     this.form = this.fb.group({
-      animal: [this.animal, [Validators.required]],
-      telefone: [this.telefone, [Validators.required]],
-      name: [this.name, [Validators.required]],
-      description: [this.description, [Validators.required]]
+      userName: [this.userName, [Validators.required]],
+      userDescription: [this.userDescription, [Validators.required]],
+      userPrice: [this.userPrice, [Validators.required]],
+      userLastname: [this.userLastname, [Validators.required]]
     });
   }
 
@@ -55,10 +55,10 @@ export class ModalAddUserComponent implements OnInit {
 
   resetForm() {
     this.form = this.fb.group({
-      animal: ['', [Validators.required]],
-      telefone: ['', [Validators.required]],
-      name: ['', [Validators.required]],
-      description: ['', [Validators.required]],
+      userName: ['', [Validators.required]],
+      userDescription: ['', [Validators.required]],
+      userPrice: ['', [Validators.required]],
+      userLastname: ['', [Validators.required]],
     });
     console.log('form after clear', this.form.value)
   }
