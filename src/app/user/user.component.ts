@@ -8,6 +8,7 @@ import { UserService } from './user.service';
 import User from './user';
 import { TooltipPosition } from '@angular/material/tooltip';
 import { FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 // Interface for Material Modal
 export interface DialogData {
@@ -48,10 +49,11 @@ export class UserComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(public dialog: MatDialog, private userService: UserService) { }
+  constructor(public dialog: MatDialog, private userService: UserService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getUsers();
+
   }
 
   // Material modal for register a new user
@@ -72,7 +74,7 @@ export class UserComponent implements OnInit {
           this.userPrice = data.userPrice;
           this.userLastname = data.userLastname;
           console.log("Valid Log", data);
-          this.addProduct(data);
+          this.addUser(data);
         }
       }
     );
@@ -115,15 +117,15 @@ export class UserComponent implements OnInit {
       });
   }
 
-  addProduct(user: User) {
+  addUser(user: User) {
     this.userService.addUser(user).subscribe(
       _ => {
+        this.openSnackBar(`User ${user.userName} successfully added!`, 'OK');
         this.getUsers();
       });
   }
 
   getUser(id) {
-    const idProduct = id;
     this.userService.getUser(id).subscribe(res => {
       console.log('res getUser', res);
     });
@@ -132,12 +134,14 @@ export class UserComponent implements OnInit {
   updateUser(user: User) {
     this.userService.updateUser(user, user._id).subscribe(
       _ => {
+        this.openSnackBar(`User ${user.userName} successfully updated!`, 'OK');
         this.getUsers();
       });
   }
 
   deleteUser(id: any) {
     this.userService.deleteUser(id).subscribe(res => {
+      this.openSnackBar(`User successfully removed!`, 'OK');
       this.getUsers();
     });
   }
@@ -145,12 +149,14 @@ export class UserComponent implements OnInit {
   searchUser(word: string) {
     word = this.searchWord;
     if (!word) {
+      this.openSnackBar(`Search field is empty !`, 'OK');
       this.getUsers();
     } else {
       this.userService.searchUser(word).subscribe(
         data => {
+          console.log('pesquisa vazia', data);
           if (data.length === 0) {
-            alert('Results not found');
+            this.openSnackBar(`Search ${word} not found!`, 'OK');
             this.getUsers();
           } else {
             this.dataSource = new MatTableDataSource<User>(data);
@@ -159,6 +165,12 @@ export class UserComponent implements OnInit {
         }
       );
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 3000,
+    });
   }
 
 }
