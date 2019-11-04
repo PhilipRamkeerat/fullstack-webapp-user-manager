@@ -6,6 +6,7 @@ import { Router, RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     MaterialModule,
     ComponentsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   exports: [
     UserComponent

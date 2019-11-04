@@ -7,13 +7,21 @@
 
 <div [ngStyle]="{'background':'#3F51B5'}">
     <mat-card-actions>
-        <button mat-fab style="margin: 1em;" color="primary" (click)="openDialog()">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
+        <button mat-fab style="margin: 0.4em;" color="" (click)="getUsers()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary">home</mat-icon>
         </button>
-        <button mat-fab style="margin: 1em;" color="primary" (click)="searchUser('Philip')">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
+
+        <button mat-fab style="margin-left: 0.3em; margin-right: 2em;" color="" (click)="openDialog()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary">add</mat-icon>
         </button>
+
+        <input placeholder="Enter user name to search" [(ngModel)]="searchWord">
+        <button mat-fab style="margin: 1px;" color="" (click)="searchUser('Philip')">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary">search</mat-icon>
+        </button>
+
     </mat-card-actions>
+
 </div>
 
 <!-- Table Content -->

@@ -136,8 +136,7 @@ export class UserComponent implements OnInit {
   }
 
   searchUser(word: string) {
-    // word = this.searchWord;
-    // this.isSearch = true;
+    word = this.searchWord;
     if (!word) {
       this.getUsers();
     } else {
@@ -150,8 +149,6 @@ export class UserComponent implements OnInit {
             this.dataSource = new MatTableDataSource<User>(data);
             this.dataSource.paginator = this.paginator;
           }
-
-          console.log('Data', data.length);
         }
       );
     }
