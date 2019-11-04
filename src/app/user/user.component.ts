@@ -7,6 +7,7 @@ import { ModalUpdateUserComponent } from '../components/modal-update-user/modal-
 import { UserService } from './user.service';
 import User from './user';
 
+// Interface for Material Modal
 export interface DialogData {
   '_id': string
   userName: string;
@@ -30,9 +31,9 @@ export class UserComponent implements OnInit {
   userLastname: string;
 
   dataSource: MatTableDataSource<User>;
-
   displayedColumns: string[] = ['_id', 'userName', 'userDescription', 'userPrice', 'userLastname', 'action'];
 
+  // Mock Object User By Id
   editObjectExample = {
     '_id': 'sadhuhsaduhsad',
     userName: 'dasdhsaduas',
@@ -46,10 +47,10 @@ export class UserComponent implements OnInit {
   constructor(public dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit() {
-
     this.getUsers();
   }
 
+  // Material modal for register a new user
   openDialog() {
     const dialogRef = this.dialog.open(ModalAddUserComponent, {
       width: '600px',
@@ -67,6 +68,7 @@ export class UserComponent implements OnInit {
           this.userPrice = data.userPrice;
           this.userLastname = data.userLastname;
           console.log("Valid Log", data);
+          // TODO: Call post function here
         }
       }
     );
