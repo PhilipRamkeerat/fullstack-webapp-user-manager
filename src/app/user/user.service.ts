@@ -56,10 +56,10 @@ export class UserService {
   }
 
   // Update User
-  updateUser(product: User, id: any): Observable<any> {
+  updateUser(user: User, id: any): Observable<any> {
     const url = `${this.userUrl}/update/${id}`;
 
-    return this.http.put(url, product).pipe(
+    return this.http.put(url, user).pipe(
       tap(_ => this.log(`updated user id ${id}`)),
       catchError(this.handleError<any>('error updateUser'))
     );

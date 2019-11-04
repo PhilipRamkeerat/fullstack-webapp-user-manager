@@ -91,20 +91,13 @@ export class UserComponent implements OnInit {
       }
     });
 
-
-
     dialogRef.afterClosed().subscribe(
       data => {
         if (!data || data == undefined || (data.userName == '' && data.userDescription == '' && data.userPrice == '' && data.userLastname == '')) {
           console.log('Invalid Datas', data);
           return;
         } else {
-          this._id = data._id;
-          this.userName = data.userName;
-          this.userDescription = data.userDescription;
-          this.userPrice = data.userPrice;
-          this.userLastname = data.userLastname;
-          console.log("Valid Log", data);
+          this.updateUser(data);
         }
       }
     );
@@ -133,5 +126,14 @@ export class UserComponent implements OnInit {
       console.log('res getUser', res);
     });
   }
+
+  updateUser(user: User) {
+    this.userService.updateUser(user, user._id).subscribe(
+      _ => {
+        this.getUsers();
+      });
+  }
+
+
 
 }
