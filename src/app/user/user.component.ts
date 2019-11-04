@@ -23,6 +23,7 @@ export interface DialogData {
 })
 export class UserComponent implements OnInit {
   users: User[] = [];
+
   // User declaration
   '_id': string;
   userName: string;
@@ -68,7 +69,7 @@ export class UserComponent implements OnInit {
           this.userPrice = data.userPrice;
           this.userLastname = data.userLastname;
           console.log("Valid Log", data);
-          // TODO: Call post function here
+          this.addProduct(data);
         }
       }
     );
@@ -113,6 +114,13 @@ export class UserComponent implements OnInit {
         this.dataSource = new MatTableDataSource<User>(users);
         this.dataSource.paginator = this.paginator;
         console.log('result', users);
+      });
+  }
+
+  addProduct(user: User) {
+    this.userService.addUser(user).subscribe(
+      _ => {
+        this.getUsers();
       });
   }
 

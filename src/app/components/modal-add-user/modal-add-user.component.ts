@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogData } from '../modal-add-user/modal-add-user.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import User from 'src/app/user/user';
+import { UserService } from 'src/app/user/user.service';
 
 
 export interface DialogData {
@@ -27,7 +29,8 @@ export class ModalAddUserComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ModalAddUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private usersService: UserService) {
     this.userName = data.userName;
     this.userDescription = data.userDescription;
     this.userPrice = data.userPrice;
@@ -62,5 +65,12 @@ export class ModalAddUserComponent implements OnInit {
     });
     console.log('form after clear', this.form.value)
   }
+
+  // addProduct(user: User) {
+  //   this.usersService.addUser(this.form.value).subscribe(
+  //     _ => {
+  //       console.log('Produto cadastrado com sucesso');
+  //     });
+  // }
 
 }

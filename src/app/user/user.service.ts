@@ -50,7 +50,7 @@ export class UserService {
     const url = `${this.userUrl}/add`;
 
     return this.http.post<User>(url, product, this.httpOptions).pipe(
-      tap((newProduct: User) => this.log(`added user w/ id=${newProduct._id}`)),
+      tap((newProduct: User) => this.log(`user successfully added`)),
       catchError(this.handleError<User>(`Error on addUser`))
     );
   }
