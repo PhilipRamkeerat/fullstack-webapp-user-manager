@@ -46,7 +46,7 @@ export class UserComponent implements OnInit {
   constructor(public dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit() {
-    // this.dataSource.paginator = this.paginator;
+
     this.getUsers();
   }
 
@@ -107,34 +107,11 @@ export class UserComponent implements OnInit {
   getUsers() {
     this.userService.getUsers()
       .subscribe((users: User[]) => {
-        // console.log('getProducts', this.users);
-        // this.users = users;
-        // console.log(users);
-        // return;
+        // Insert result get on material table
         this.dataSource = new MatTableDataSource<User>(users);
+        this.dataSource.paginator = this.paginator;
         console.log('result', users);
       });
   }
 
 }
-
-export interface PeriodicElement {
-  '_id': string
-  userName: string;
-  userDescription: string;
-  userPrice: string;
-  userLastname: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { '_id': '2312323212', userName: 'Hydrogen Dos Santos Rodrigues Ramkeerat', userDescription: '1.0079', userPrice: 'H', userLastname: 'LastName Mock' },
-  { '_id': '2312323212', userName: 'Helium  Dos Santos Rodrigues', userDescription: '4.0026', userPrice: 'He', userLastname: 'LastName Mock' },
-  { '_id': '2312323212', userName: 'Lithium  Dos Santos Rodrigues', userDescription: '6.941', userPrice: 'Li', userLastname: 'LastName Mock' },
-  { '_id': '2312323212', userName: 'Beryllium  Dos Santos Rodrigues', userDescription: '9.0122', userPrice: 'Be', userLastname: 'LastName Mock' },
-  { '_id': '2312323212', userName: 'Boron  Dos Santos Rodrigues', userDescription: '10.811', userPrice: 'B', userLastname: 'LastName Mock' },
-  { '_id': '2312323212', userName: 'Carbon  Dos Santos Rodrigues', userDescription: '12.0107', userPrice: 'C', userLastname: 'LastName Mock' },
-  { '_id': '2312323212', userName: 'Nitrogen  Dos Santos Rodrigues', userDescription: '14.0067', userPrice: 'N', userLastname: 'LastName Mock' },
-  { '_id': '2312323212', userName: 'Oxygen  Dos Santos Rodrigues', userDescription: '15.9994', userPrice: 'O', userLastname: 'LastName Mock' },
-  { '_id': '2312323212', userName: 'Fluorine  Dos Santos Rodrigues', userDescription: '18.9984', userPrice: 'F', userLastname: 'LastName Mock' },
-];
-
