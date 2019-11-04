@@ -8,10 +8,11 @@ import { UserService } from './user.service';
 import User from './user';
 
 export interface DialogData {
-  animal: string;
-  name: string;
-  telefone: string;
-  description: string;
+  '_id': string
+  userName: string;
+  userDescription: string;
+  userPrice: string;
+  userLastname: string;
 }
 
 @Component({
@@ -21,19 +22,23 @@ export interface DialogData {
 })
 export class UserComponent implements OnInit {
   users: User[] = [];
-  name: string;
-  animal: string;
-  telefone: string;
-  description: string;
+  // User declaration
+  '_id': string;
+  userName: string;
+  userDescription: string;
+  userPrice: string;
+  userLastname: string;
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource: MatTableDataSource<User>;
+
+  displayedColumns: string[] = ['_id', 'userName', 'userDescription', 'userPrice', 'userLastname', 'action'];
 
   editObjectExample = {
-    name: 'Philip',
-    animal: 'Cachorro',
-    telefone: '994390864',
-    description: 'Description Phil'
+    '_id': 'sadhuhsaduhsad',
+    userName: 'dasdhsaduas',
+    userDescription: 'dasdsad',
+    userPrice: 'dasdsa',
+    userLastname: 'dasdasdsa'
   }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -41,26 +46,26 @@ export class UserComponent implements OnInit {
   constructor(public dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
     this.getUsers();
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(ModalAddUserComponent, {
       width: '600px',
-      data: { name: '', animal: '', telefone: '', description: '' }
+      data: { '_id': '', userName: '', userDescription: '', userPrice: '', userLastname: '' }
     });
 
     dialogRef.afterClosed().subscribe(
       data => {
-        if (!data || data == undefined || (data.name == '' && data.animal == '' && data.telefone == '' && data.description == '')) {
+        if (!data || data == undefined || (data.userName == '' && data.userDescription == '' && data.userPrice == '' && data.userLastname == '')) {
           console.log('Invalid Datas', data);
           return;
         } else {
-          this.name = data.name;
-          this.animal = data.animal;
-          this.telefone = data.telefone;
-          this.description = data.description;
+          this.userName = data.userName;
+          this.userDescription = data.userDescription;
+          this.userPrice = data.userPrice;
+          this.userLastname = data.userLastname;
           console.log("Valid Log", data);
         }
       }
@@ -72,23 +77,27 @@ export class UserComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalUpdateUserComponent, {
       width: '600px',
       data: {
-        name: this.editObjectExample.name,
-        animal: this.editObjectExample.animal,
-        telefone: this.editObjectExample.telefone,
-        description: this.editObjectExample.description
+        '_id': this.editObjectExample._id,
+        userName: this.editObjectExample.userName,
+        userDescription: this.editObjectExample.userDescription,
+        userPrice: this.editObjectExample.userPrice,
+        userLastname: this.editObjectExample.userLastname
       }
     });
 
+
+
     dialogRef.afterClosed().subscribe(
       data => {
-        if (!data || data == undefined || (data.name == '' && data.animal == '' && data.telefone == '' && data.description == '')) {
+        if (!data || data == undefined || (data.userName == '' && data.userDescription == '' && data.userPrice == '' && data.userLastname == '')) {
           console.log('Invalid Datas', data);
           return;
         } else {
-          this.name = data.name;
-          this.animal = data.animal;
-          this.telefone = data.telefone;
-          this.description = data.description;
+          this._id = data._id;
+          this.userName = data.userName;
+          this.userDescription = data.userDescription;
+          this.userPrice = data.userPrice;
+          this.userLastname = data.userLastname;
           console.log("Valid Log", data);
         }
       }
@@ -97,45 +106,35 @@ export class UserComponent implements OnInit {
 
   getUsers() {
     this.userService.getUsers()
-      .subscribe((product: User[]) => {
-        console.log('getProducts', this.users);
-        this.users = product;
-        console.log('result', product);
+      .subscribe((users: User[]) => {
+        // console.log('getProducts', this.users);
+        // this.users = users;
+        // console.log(users);
+        // return;
+        this.dataSource = new MatTableDataSource<User>(users);
+        console.log('result', users);
       });
   }
 
 }
 
 export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  '_id': string
+  userName: string;
+  userDescription: string;
+  userPrice: string;
+  userLastname: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen Dos Santos Rodrigues Ramkeerat', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium  Dos Santos Rodrigues', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium  Dos Santos Rodrigues', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium  Dos Santos Rodrigues', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron  Dos Santos Rodrigues', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon  Dos Santos Rodrigues', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen  Dos Santos Rodrigues', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen  Dos Santos Rodrigues', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine  Dos Santos Rodrigues', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon  Dos Santos Rodrigues', weight: 20.1797, symbol: 'Ne' },
-  { position: 11, name: 'Sodium  Dos Santos Rodrigues', weight: 22.9897, symbol: 'Na' },
-  { position: 12, name: 'Magnesium  Dos Santos Rodrigues', weight: 24.305, symbol: 'Mg' },
-  { position: 13, name: 'Aluminum  Dos Santos Rodrigues', weight: 26.9815, symbol: 'Al' },
-  { position: 14, name: 'Silicon  Dos Santos Rodrigues', weight: 28.0855, symbol: 'Si' },
-  { position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P' },
-  { position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S' },
-  { position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl' },
-  { position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar' },
-  { position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K' },
-  { position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca' },
-  { position: 21, name: 'Calcium', weight: 40.078, symbol: 'Ca' },
-  { position: 22, name: 'Calcium', weight: 40.078, symbol: 'Ca' },
-  { position: 23, name: 'Calcium', weight: 40.078, symbol: 'Ca' },
+  { '_id': '2312323212', userName: 'Hydrogen Dos Santos Rodrigues Ramkeerat', userDescription: '1.0079', userPrice: 'H', userLastname: 'LastName Mock' },
+  { '_id': '2312323212', userName: 'Helium  Dos Santos Rodrigues', userDescription: '4.0026', userPrice: 'He', userLastname: 'LastName Mock' },
+  { '_id': '2312323212', userName: 'Lithium  Dos Santos Rodrigues', userDescription: '6.941', userPrice: 'Li', userLastname: 'LastName Mock' },
+  { '_id': '2312323212', userName: 'Beryllium  Dos Santos Rodrigues', userDescription: '9.0122', userPrice: 'Be', userLastname: 'LastName Mock' },
+  { '_id': '2312323212', userName: 'Boron  Dos Santos Rodrigues', userDescription: '10.811', userPrice: 'B', userLastname: 'LastName Mock' },
+  { '_id': '2312323212', userName: 'Carbon  Dos Santos Rodrigues', userDescription: '12.0107', userPrice: 'C', userLastname: 'LastName Mock' },
+  { '_id': '2312323212', userName: 'Nitrogen  Dos Santos Rodrigues', userDescription: '14.0067', userPrice: 'N', userLastname: 'LastName Mock' },
+  { '_id': '2312323212', userName: 'Oxygen  Dos Santos Rodrigues', userDescription: '15.9994', userPrice: 'O', userLastname: 'LastName Mock' },
+  { '_id': '2312323212', userName: 'Fluorine  Dos Santos Rodrigues', userDescription: '18.9984', userPrice: 'F', userLastname: 'LastName Mock' },
 ];
 

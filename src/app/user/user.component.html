@@ -17,29 +17,36 @@
 <div class="mat-elevation-z8" style="margin: 1em;">
     <table mat-table [dataSource]="dataSource">
 
-        <!-- Position Column -->
-        <ng-container matColumnDef="position" sticky>
-            <th mat-header-cell *matHeaderCellDef> ID </th>
-            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        <!-- _id Column -->
+        <ng-container matColumnDef="_id" sticky>
+            <th mat-header-cell *matHeaderCellDef> _id </th>
+            <td mat-cell *matCellDef="let element"> {{element._id}} </td>
         </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <!-- userName Column -->
+        <ng-container matColumnDef="userName">
+            <th mat-header-cell *matHeaderCellDef> userName </th>
+            <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
         </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-            <th mat-header-cell *matHeaderCellDef> Weight </th>
-            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        <!-- userDescription Column -->
+        <ng-container matColumnDef="userDescription">
+            <th mat-header-cell *matHeaderCellDef> userDescription </th>
+            <td mat-cell *matCellDef="let element"> {{element.userDescription}} </td>
         </ng-container>
 
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-            <th mat-header-cell *matHeaderCellDef> Symbol </th>
-            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        <!-- userPrice Column -->
+        <ng-container matColumnDef="userPrice">
+            <th mat-header-cell *matHeaderCellDef> userPrice </th>
+            <td mat-cell *matCellDef="let element"> {{element.userPrice}} </td>
         </ng-container>
+
+        <!-- userLastname Column -->
+        <ng-container matColumnDef="userLastname">
+            <th mat-header-cell *matHeaderCellDef> userLastname </th>
+            <td mat-cell *matCellDef="let element"> {{element.userLastname}} </td>
+        </ng-container>
+
 
         <ng-container matColumnDef="action" stickyEnd>
             <th mat-header-cell *matHeaderCellDef> Action </th>
