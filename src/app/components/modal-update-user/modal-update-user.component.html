@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>Update User</h1>
+<h1 mat-dialog-title class="primary-color">Update User</h1>
 <div mat-dialog-content [formGroup]="form" class="mat-typography">
-    <div *ngIf="form.invalid">
-        <span>
-            Fill in all fields
+    <div *ngIf="form.invalid" style="margin-bottom: 1em;">
+        <span class="primary-color">
+            Attention fill in all fields
         </span>
         <mat-icon aria-hidden="false" aria-label="Example home icon" color="warn">notification_important</mat-icon>
     </div>

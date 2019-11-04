@@ -1,10 +1,10 @@
-<h1 mat-dialog-title>Register</h1>
+<h1 mat-dialog-title class="register-title">Register</h1>
 <div mat-dialog-content [formGroup]="form" class="mat-typography">
-    <div *ngIf="form.invalid">
-        <span>
-            Fill in all fields
-        </span>
+    <div *ngIf="form.invalid" style="margin-bottom: 1em;">
         <mat-icon aria-hidden="false" aria-label="Example home icon" color="warn">notification_important</mat-icon>
+        <span class="primary-color">
+            Attention fill in all fields
+        </span>
     </div>
     <mat-form-field class="example-full-width">
         <input matInput placeholder="Name" [(ngModel)]="data.name" formControlName="name">
