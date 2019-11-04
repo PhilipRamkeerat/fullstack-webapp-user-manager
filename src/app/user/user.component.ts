@@ -4,6 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalAddUserComponent } from '../components/modal-add-user/modal-add-user.component';
 import { ModalUpdateUserComponent } from '../components/modal-update-user/modal-update-user.component';
+import { UserService } from './user.service';
+import User from './user';
 
 export interface DialogData {
   animal: string;
@@ -18,13 +20,15 @@ export interface DialogData {
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
-
+  users: User[] = [];
   name: string;
   animal: string;
   telefone: string;
   description: string;
+
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
   editObjectExample = {
     name: 'Philip',
     animal: 'Cachorro',
@@ -34,10 +38,11 @@ export class UserComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
+    this.getUsers();
   }
 
   openDialog() {
@@ -88,6 +93,15 @@ export class UserComponent implements OnInit {
         }
       }
     );
+  }
+
+  getUsers() {
+    this.userService.getUsers()
+      .subscribe((product: User[]) => {
+        console.log('getProducts', this.users);
+        this.users = product;
+        console.log('result', product);
+      });
   }
 
 }

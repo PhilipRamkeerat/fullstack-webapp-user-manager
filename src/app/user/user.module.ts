@@ -4,6 +4,8 @@ import { UserComponent } from './user.component';
 import { MaterialModule } from '../material.module';
 import { Router, RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
+import { UserService } from './user.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -12,13 +14,17 @@ import { ComponentsModule } from '../components/components.module';
   imports: [
     CommonModule,
     MaterialModule,
-    ComponentsModule
+    ComponentsModule,
+    HttpClientModule
   ],
   exports: [
     UserComponent
   ],
   entryComponents: [
     UserComponent
+  ],
+  providers: [
+    UserService
   ]
 })
 export class UserModule { }
