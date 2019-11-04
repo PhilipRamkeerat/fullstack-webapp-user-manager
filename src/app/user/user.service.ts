@@ -40,8 +40,8 @@ export class UserService {
       return of([]); // Return empty product array
     }
     return this.http.get<User[]>(`${this.userUrl}/search/${term}`).pipe(
-      tap(_ => this.log(`found products matching "${term}" `)),
-      catchError(this.handleError<User[]>('error searchProducts', []))
+      tap(_ => this.log(`found users matching "${term}" `)),
+      catchError(this.handleError<User[]>('error searchUser', []))
     );
   }
 

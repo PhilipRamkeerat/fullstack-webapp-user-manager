@@ -35,14 +35,9 @@ export class UserComponent implements OnInit {
   displayedColumns: string[] = ['_id', 'userName', 'userDescription', 'userPrice', 'userLastname', 'action'];
 
   editObjectExample: User;
-  // Mock Object User By Id
-  // editObjectExample = {
-  //   '_id': 'sadhuhsaduhsad',
-  //   userName: 'dasdhsaduas',
-  //   userDescription: 'dasdsad',
-  //   userPrice: 'dasdsa',
-  //   userLastname: 'dasdasdsa'
-  // }
+
+  // Search
+  searchWord: string;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -138,6 +133,28 @@ export class UserComponent implements OnInit {
     this.userService.deleteUser(id).subscribe(res => {
       this.getUsers();
     });
+  }
+
+  searchUser(word: string) {
+    // word = this.searchWord;
+    // this.isSearch = true;
+    if (!word) {
+      this.getUsers();
+    } else {
+      this.userService.searchUser(word).subscribe(
+        data => {
+          if (data.length === 0) {
+            alert('Results not found');
+            this.getUsers();
+          } else {
+            this.dataSource = new MatTableDataSource<User>(data);
+            this.dataSource.paginator = this.paginator;
+          }
+
+          console.log('Data', data.length);
+        }
+      );
+    }
   }
 
 }
