@@ -34,14 +34,15 @@ export class UserComponent implements OnInit {
   dataSource: MatTableDataSource<User>;
   displayedColumns: string[] = ['_id', 'userName', 'userDescription', 'userPrice', 'userLastname', 'action'];
 
+  editObjectExample: User;
   // Mock Object User By Id
-  editObjectExample = {
-    '_id': 'sadhuhsaduhsad',
-    userName: 'dasdhsaduas',
-    userDescription: 'dasdsad',
-    userPrice: 'dasdsa',
-    userLastname: 'dasdasdsa'
-  }
+  // editObjectExample = {
+  //   '_id': 'sadhuhsaduhsad',
+  //   userName: 'dasdhsaduas',
+  //   userDescription: 'dasdsad',
+  //   userPrice: 'dasdsa',
+  //   userLastname: 'dasdasdsa'
+  // }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -75,16 +76,18 @@ export class UserComponent implements OnInit {
     );
   }
 
-  editDialog() {
-    console.log('edit called success')
+  editDialog(element: any) {
+    // this.getUser(id);
+    console.log('element', element);
+
     const dialogRef = this.dialog.open(ModalUpdateUserComponent, {
       width: '600px',
       data: {
-        '_id': this.editObjectExample._id,
-        userName: this.editObjectExample.userName,
-        userDescription: this.editObjectExample.userDescription,
-        userPrice: this.editObjectExample.userPrice,
-        userLastname: this.editObjectExample.userLastname
+        '_id': element._id,
+        userName: element.userName,
+        userDescription: element.userDescription,
+        userPrice: element.userPrice,
+        userLastname: element.userLastname
       }
     });
 
@@ -122,6 +125,13 @@ export class UserComponent implements OnInit {
       _ => {
         this.getUsers();
       });
+  }
+
+  getUser(id) {
+    const idProduct = id;
+    this.userService.getUser(id).subscribe(res => {
+      console.log('res getUser', res);
+    });
   }
 
 }
