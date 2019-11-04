@@ -134,6 +134,10 @@ export class UserComponent implements OnInit {
       });
   }
 
-
+  deleteUser(id: any) {
+    this.userService.deleteUser(id).subscribe(res => {
+      this.getUsers();
+    });
+  }
 
 }
