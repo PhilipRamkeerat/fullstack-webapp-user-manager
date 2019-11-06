@@ -19,8 +19,6 @@ The entire api is contained on api folder
 - Install: `npm install`
 - Run: `npm start` or `nodemon server`
 
-## Get list of Users
-
 ### Request Endpoints
 `GET http://localhost:4000/users`
 
