@@ -66,11 +66,4 @@ export class ModalAddUserComponent implements OnInit {
     console.log('form after clear', this.form.value)
   }
 
-  // addProduct(user: User) {
-  //   this.usersService.addUser(this.form.value).subscribe(
-  //     _ => {
-  //       console.log('Produto cadastrado com sucesso');
-  //     });
-  // }
-
 }
