@@ -38,6 +38,7 @@ The entire api is contained on api folder
 ## RUN PROJECT (Need to start backend api and frontend app)
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
+
 Go to api folder and run `npm start`
 
 ## Docker MongoDB configuration
