@@ -1,27 +1,43 @@
-# Ng8MaterialCrud
+# Fullstack Project - Users Management System
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.5.
+# Requirements
+* Node 8x +
+* Mongo 4.x + ex: (localhost:27017)
+* Angular CLI: 8.2.2
+* Node: 10.15.0
+* Angular: 8.2.11
 
-## Development server
+## FRONTEND
+This project uses [Angular CLI](https://github.com/angular/angular-cli) version 8.3.5.
+- Install: `npm install`
+- Run: `ng serve`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## BACKEND - REST API
+The entire api is contained on api folder
+- Install: `npm install`
+- Run: `npm start` or `nodemon server`
 
-## Code scaffolding
+## Get list of Users
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Request Endpoints
+`GET http://localhost:4000/users`
 
-## Build
+`GET http://localhost:4000/users/search/:work` -> Search user by specific word
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+`PUT http://localhost:4000/users/update/:objectId`
 
-## Running unit tests
+`POST http://localhost:4000/users/add`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+`DELETE http://localhost:4000/users/delete/:objectId`
 
-## Running end-to-end tests
+### Response
+    ...
+    Content-Type: application/json
+    []
+    
+## RUN PROJECT (Need to start backend api and frontend app)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
+Go to api folder and run `npm start`
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
