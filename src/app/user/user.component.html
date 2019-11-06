@@ -1,30 +1,36 @@
 <mat-toolbar color="primary" class="mat-elevation-z6">
-  <i class="material-icons" style="margin-right: 2px; margin-left: -0.3em; font-size: 60px;">
+  <i class="material-icons" style="margin-right: 2px; margin-left: -0.3em; font-size: 50px;">
     dashboard
   </i>
-  <p style="font-family: Roboto;"> Users Manager </p>
+
+
+  <button mat-icon-button color="" (click)="getUsers()" matTooltip="List all users">
+    <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+  </button>
+
+  <button mat-icon-button color="" (click)="openDialog()" matTooltip="Register User">
+    <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
+  </button>
+
+  <span class="space-material"></span>
+
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Name for Search" [(ngModel)]="searchWord" value="Sushi">
+  </mat-form-field>
+  <button mat-icon-button color="" (click)="searchUser('Philip')" matTooltip="Register User">
+    <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
+  </button>
+  <button mat-icon-button color="" (click)="getUsers()" matTooltip="Reload table users">
+    <mat-icon aria-hidden="false" aria-label="Example home icon">undo</mat-icon>
+  </button>
+
+  <!-- <button mat-icon-button color="" (click)="searchUser('Philip')">
+    <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary" matTooltip="Search user"
+      [matTooltipPosition]="positionRight.value">search </mat-icon>
+  </button> -->
 </mat-toolbar>
 
-<div [ngStyle]="{'background':'#3F51B5'}">
-  <mat-card-actions>
-    <button mat-fab style="margin: 0.4em;" color="" (click)="getUsers()" matTooltip="List all users">
-      <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary">home</mat-icon>
-    </button>
-
-    <button mat-fab style="margin-left: 0.3em; margin-right: 2em;" color="" (click)="openDialog()"
-      matTooltip="Register User">
-      <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary">add</mat-icon>
-    </button>
-
-    <input placeholder="Enter user name to search" [(ngModel)]="searchWord">
-    <button mat-fab style="margin: 2px;" color="" (click)="searchUser('Philip')">
-      <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary" matTooltip="Search user"
-        [matTooltipPosition]="positionRight.value">search
-      </mat-icon>
-    </button>
-
-  </mat-card-actions>
-</div>
 
 <div class="jumbotron">
   <h1 class="display-4" style="color: #3F51B5;">Welcome to the user management system</h1>
@@ -69,19 +75,16 @@
     <ng-container matColumnDef="action" stickyEnd>
       <th mat-header-cell *matHeaderCellDef> Action </th>
       <td mat-cell *matCellDef="let element">
-        <button mat-raised-button color="primary" class="push-left" (click)="editDialog(element)" matTooltip="Edit user"
+        <button mat-icon-button color="primary" (click)="editDialog(element)" matTooltip="Edit User"
           [matTooltipPosition]="positionLeft.value">
-          <mat-icon aria-hidden="false" aria-label="Example home icon">editar
-          </mat-icon>
+          <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
         </button>
-        <button mat-raised-button color="warn" class="push-right" style="margin-left: 0.3em;"
-          (click)="deleteUser(element._id)" matTooltip="Delete user" [matTooltipPosition]="positionRight.value">
-          <mat-icon aria-hidden="false" aria-label="Example home icon">remove_circle_outline
-          </mat-icon>
+        <button mat-icon-button color="warn" (click)="deleteUser(element._id)" matTooltip="Delete User"
+          [matTooltipPosition]="positionRight.value">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
         </button>
       </td>
     </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>

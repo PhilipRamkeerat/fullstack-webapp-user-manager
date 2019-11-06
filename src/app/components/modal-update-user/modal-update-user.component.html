@@ -1,37 +1,36 @@
 <h1 mat-dialog-title class="primary-color">Update User</h1>
 <div mat-dialog-content [formGroup]="form" class="mat-typography">
-    <div *ngIf="form.invalid" style="margin-bottom: 1em;">
-        <span class="primary-color">
-            Attention fill in all fields
-        </span>
-        <mat-icon aria-hidden="false" aria-label="Example home icon" color="warn">notification_important</mat-icon>
-    </div>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="userName" [(ngModel)]="data.userName" formControlName="userName">
-        <mat-error> userName is required.</mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="userDescription" [(ngModel)]="data.userDescription"
-            formControlName="userDescription">
-        <mat-error> userDescription is required.</mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="userPrice" [(ngModel)]="data.userPrice" formControlName="userPrice">
-        <mat-error> userPrice is required.</mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="userLastname" [(ngModel)]="data.userLastname" formControlName="userLastname">
-        <mat-error> userLastname is required.</mat-error>
-    </mat-form-field>
+  <div *ngIf="form.invalid" style="margin-bottom: 1em;">
+    <span class="primary-color">
+      Attention fill in all fields
+    </span>
+    <mat-icon aria-hidden="false" aria-label="Example home icon" color="warn">notification_important</mat-icon>
+  </div>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="userName" [(ngModel)]="data.userName" formControlName="userName">
+    <mat-error> userName is required.</mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="userDescription" [(ngModel)]="data.userDescription" formControlName="userDescription">
+    <mat-error> userDescription is required.</mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="userPrice" [(ngModel)]="data.userPrice" formControlName="userPrice">
+    <mat-error> userPrice is required.</mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="userLastname" [(ngModel)]="data.userLastname" formControlName="userLastname">
+    <mat-error> userLastname is required.</mat-error>
+  </mat-form-field>
 </div>
 <div mat-dialog-actions>
-    <button mat-raised-button color="warn" (click)="onNoClick()">
-        <mat-icon aria-hidden="false" aria-label="Example home icon" color="white">clear</mat-icon>
-    </button>
-    <button mat-raised-button color="primary" [mat-dialog-close]="data" [disabled]="form.invalid">
-        <mat-icon aria-hidden="false" aria-label="Example home icon" color="white">save</mat-icon>
-    </button>
+  <button mat-button color="warn" (click)="onNoClick()">
+    Cancel
+  </button>
+  <button mat-button color="primary" [mat-dialog-close]="data" [disabled]="form.invalid">
+    Save
+  </button>
 </div>
