@@ -14,9 +14,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export interface DialogData {
   '_id': string
   userName: string;
-  userDescription: string;
-  userPrice: string;
-  userLastname: string;
+  userEmail: string;
+  userCPF: string;
+  userPhone: string;
 }
 
 @Component({
@@ -30,12 +30,12 @@ export class UserComponent implements OnInit {
   // User declaration
   '_id': string;
   userName: string;
-  userDescription: string;
-  userPrice: string;
-  userLastname: string;
+  userEmail: string;
+  userCPF: string;
+  userPhone: string;
 
   dataSource: MatTableDataSource<User>;
-  displayedColumns: string[] = ['_id', 'userName', 'userDescription', 'userPrice', 'userLastname', 'action'];
+  displayedColumns: string[] = ['userName', 'userEmail', 'userCPF', 'userPhone', 'action'];
 
   editObjectExample: User;
 
@@ -60,20 +60,19 @@ export class UserComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(ModalAddUserComponent, {
       width: '600px',
-      data: { userName: '', userDescription: '', userPrice: '', userLastname: '' }
+      data: { userName: '', userEmail: '', userCPF: '', userPhone: '' }
     });
 
     dialogRef.afterClosed().subscribe(
       data => {
-        if (!data || data == undefined || (data.userName == '' && data.userDescription == '' && data.userPrice == '' && data.userLastname == '')) {
-          console.log('Invalid Datas', data);
+        if (!data || data == undefined || (data.userName == '' && data.userEmail == '' && data.userCPF == '' && data.userPhone == '')) {
+          this.openSnackBar(`Invalid Datas !`, 'OK');
           return;
         } else {
           this.userName = data.userName;
-          this.userDescription = data.userDescription;
-          this.userPrice = data.userPrice;
-          this.userLastname = data.userLastname;
-          console.log("Valid Log", data);
+          this.userEmail = data.userEmail;
+          this.userCPF = data.userCPF;
+          this.userPhone = data.userPhone;
           this.addUser(data);
         }
       }
@@ -81,24 +80,21 @@ export class UserComponent implements OnInit {
   }
 
   editDialog(element: any) {
-    // this.getUser(id);
-    console.log('element', element);
-
     const dialogRef = this.dialog.open(ModalUpdateUserComponent, {
       width: '600px',
       data: {
         '_id': element._id,
         userName: element.userName,
-        userDescription: element.userDescription,
-        userPrice: element.userPrice,
-        userLastname: element.userLastname
+        userEmail: element.userEmail,
+        userCPF: element.userCPF,
+        userPhone: element.userPhone
       }
     });
 
     dialogRef.afterClosed().subscribe(
       data => {
-        if (!data || data == undefined || (data.userName == '' && data.userDescription == '' && data.userPrice == '' && data.userLastname == '')) {
-          console.log('Invalid Datas', data);
+        if (!data || data == undefined || (data.userName == '' && data.userEmail == '' && data.userCPF == '' && data.userPhone == '')) {
+          this.openSnackBar(`Invalid Datas !`, 'OK');
           return;
         } else {
           this.updateUser(data);
@@ -113,7 +109,6 @@ export class UserComponent implements OnInit {
         // Insert result get on material table
         this.dataSource = new MatTableDataSource<User>(users);
         this.dataSource.paginator = this.paginator;
-        console.log('result', users);
       });
   }
 
@@ -127,7 +122,6 @@ export class UserComponent implements OnInit {
 
   getUser(id) {
     this.userService.getUser(id).subscribe(res => {
-      console.log('res getUser', res);
     });
   }
 
@@ -154,7 +148,7 @@ export class UserComponent implements OnInit {
     } else {
       this.userService.searchUser(word).subscribe(
         data => {
-          console.log('pesquisa vazia', data);
+          this.openSnackBar(`Search is empty !`, 'OK');
           if (data.length === 0) {
             this.openSnackBar(`Search ${word} not found!`, 'OK');
             this.getUsers();

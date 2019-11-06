@@ -13,9 +13,9 @@ export class ModalUpdateUserComponent implements OnInit {
 
   form: FormGroup
   userName: string;
-  userDescription: string;
-  userPrice: string;
-  userLastname: string;
+  userEmail: string;
+  userCPF: string;
+  userPhone: string;
 
   constructor(
     public dialogRef: MatDialogRef<ModalUpdateUserComponent>,
@@ -23,17 +23,17 @@ export class ModalUpdateUserComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.userName = data.userName;
-    this.userDescription = data.userDescription;
-    this.userPrice = data.userPrice;
-    this.userLastname = data.userLastname;
+    this.userEmail = data.userEmail;
+    this.userCPF = data.userCPF;
+    this.userPhone = data.userPhone;
   }
 
   ngOnInit() {
     this.form = this.fb.group({
       userName: [this.userName, [Validators.required]],
-      userDescription: [this.userDescription, [Validators.required]],
-      userPrice: [this.userPrice, [Validators.required]],
-      userLastname: [this.userLastname, [Validators.required]]
+      userEmail: [this.userEmail, [Validators.required]],
+      userCPF: [this.userCPF, [Validators.required]],
+      userPhone: [this.userPhone, [Validators.required]]
     });
   }
 
@@ -50,9 +50,9 @@ export class ModalUpdateUserComponent implements OnInit {
   resetForm() {
     this.form = this.fb.group({
       userName: ['', [Validators.required]],
-      userDescription: ['', [Validators.required]],
-      userPrice: ['', [Validators.required]],
-      userLastname: ['', [Validators.required]],
+      userEmail: ['', [Validators.required]],
+      userCPF: ['', [Validators.required]],
+      userPhone: ['', [Validators.required]],
     });
     console.log('Edit Modal After Close', this.form.value)
   }

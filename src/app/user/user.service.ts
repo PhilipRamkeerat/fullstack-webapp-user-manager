@@ -9,7 +9,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class UserService {
 
-  private userUrl = 'http://localhost:4000/products';
+  private userUrl = 'http://localhost:4000/users';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'Application/json' })
   };
@@ -19,7 +19,7 @@ export class UserService {
   // Get all users
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl).pipe(
-      tap(_ => console.log('Fetched products')),
+      tap(_ => console.log('Fetched users')),
       catchError(this.handleError<User[]>('getUsers', []))
     );
   }
@@ -29,7 +29,7 @@ export class UserService {
     const url = `${this.userUrl}/edit/${id}`;
 
     return this.http.get<User>(url).pipe(
-      tap(_ => this.log(`Fetched product id = ${id}`)),
+      tap(_ => this.log(`Fetched user id = ${id}`)),
       catchError(this.handleError<User>(`error on getUser id=${id}`))
     );
   }
@@ -37,7 +37,7 @@ export class UserService {
   // Search user
   searchUser(term: string): Observable<User[]> {
     if (!term.trim()) {
-      return of([]); // Return empty product array
+      return of([]); // Return empty user array
     }
     return this.http.get<User[]>(`${this.userUrl}/search/${term}`).pipe(
       tap(_ => this.log(`found users matching "${term}" `)),
@@ -46,10 +46,10 @@ export class UserService {
   }
 
   // Register user
-  addUser(product: User): Observable<User> {
+  addUser(user: User): Observable<User> {
     const url = `${this.userUrl}/add`;
 
-    return this.http.post<User>(url, product, this.httpOptions).pipe(
+    return this.http.post<User>(url, user, this.httpOptions).pipe(
       tap((newProduct: User) => this.log(`user successfully added`)),
       catchError(this.handleError<User>(`Error on addUser`))
     );
@@ -71,7 +71,7 @@ export class UserService {
 
     console.log('url do deleteUser', url);
     return this.http.delete<User>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted product id = ${id}`)),
+      tap(_ => this.log(`deleted user id = ${id}`)),
       catchError(this.handleError<any>('error on deleteUser'))
     );
   }
@@ -95,7 +95,7 @@ export class UserService {
     };
   }
 
-  /** Log product */
+  /** Log user */
   private log(message: string) {
     console.log(message);
   }
