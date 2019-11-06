@@ -1,4 +1,6 @@
 # Fullstack Project - Users Management System
+- Philip Floriano Rodrigues Ramkeerat
+- INDT artifact for "Desenvolvedor II" test
 
 # Requirements
 * Node 8x +
