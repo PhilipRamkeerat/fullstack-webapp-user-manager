@@ -22,7 +22,7 @@ The entire api is contained on api folder
 ### Request Endpoints
 `GET http://localhost:4000/users`
 
-`GET http://localhost:4000/users/search/:work` -> Search user by specific word
+`GET http://localhost:4000/users/search/:work` (Search)
 
 `PUT http://localhost:4000/users/update/:objectId`
 
@@ -39,5 +39,12 @@ The entire api is contained on api folder
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 Go to api folder and run `npm start`
+
+## Docker MongoDB configuration
+Example of docker mongo configuration for tests purposes
+```
+docker run -d -p 27017:27017 -p 28017:28017 -e AUTH=no tutum/mongodb 
+```
+
 
 
