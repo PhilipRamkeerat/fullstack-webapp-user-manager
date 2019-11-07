@@ -1,6 +1,5 @@
 # FULLSTACK PROJECT - USER MANAGEMENT WEBAPP
 - Philip Floriano Rodrigues Ramkeerat
-- INDT artifact for "Desenvolvedor II".
 
 # Requirements
 * Node 8x +
