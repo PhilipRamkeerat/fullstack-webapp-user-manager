@@ -12,6 +12,7 @@
 This project uses [Angular CLI](https://github.com/angular/angular-cli) version 8.3.5.
 - Install: `npm install`
 - Run: `ng serve`
+- Needs updating to lower resolutions
 
 ## BACKEND - REST API
 The entire api is contained on api folder
