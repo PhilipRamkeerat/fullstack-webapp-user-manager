@@ -1,5 +1,5 @@
 # FULLSTACK PROJECT - USER MANAGEMENT WEBAPP
-- Philip Floriano Rodrigues Ramkeerat
+- Philip Ramkeerat
 
 # Requirements
 * Node 8x +
